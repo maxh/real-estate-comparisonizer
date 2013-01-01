@@ -29,7 +29,7 @@ class RealEstateCompServer {
     
     server.listen('127.0.0.1', 8080);
     
-    // Returns two random zip codes and meta data.
+    // If this zip isn't already in the blacklist, add it.
     server.addRequestHandler(
       (HttpRequest req) => req.path.contains("/blacklist"),
       (HttpRequest req, HttpResponse resp) {
@@ -38,14 +38,13 @@ class RealEstateCompServer {
         var s = f.readAsString();
         s.then((String cur_blacklist) {
           int zip = int.parse(req.queryParameters["zip"]);
-          // If this zip isn't already in the blacklist, add it.
           if (!cur_blacklist.contains(zip.toString()))
             f.writeAsString('${zip}\n', FileMode.APPEND);
         });
       }
     );
     
-    // Returns two random zip codes and meta data.
+    // Responds with two random zip codes and meta data.
     server.addRequestHandler(
       (HttpRequest req) => req.path == "/random-zips",
       (HttpRequest req, HttpResponse resp) {
