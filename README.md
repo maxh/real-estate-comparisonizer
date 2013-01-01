@@ -2,4 +2,6 @@ Real Estate Comparisonizer
 --------------------------
 
 Guess which neighboorhood is more expensive based on Street View imagery!
-Someday it will support individual houses.
+Uses the Google Street View and Zillow APIs.
+ 
+Someday it will support individual houses :)
