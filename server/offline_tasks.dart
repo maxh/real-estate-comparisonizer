@@ -1,11 +1,18 @@
-/** Resolve_zips.dart: A helper file to preprocess census data on zipcodes.
+/** offline_tasks.dart: A helper program for offline data processing.
  *  
+ *  Takes one of two arguments: fetch or blacklist
+ *  
+ *  > dart offline_tasks.dart fetch
  *  If Street View doesn't have imagery at a requested (lat,lng), it gives a 
  *  404. To avoid this, this script preprocesses the census data to find a
- *  (lat,lng) with imagery for each zip code.
+ *  (lat,lng) with imagery for each zip code. It uses the Geocoding API to find
+ *  the (lat,lng) of the city provided in the census file.
  *  
- *  It uses the Geocoding API to find the (lat,lng) of the city provided in the
- *  census file. 
+ *  > dart offline_tasks.dart blacklist
+ *  Adds a "#" to the beginning of each line with a blacklisted zip in the file
+ *  PROCESSED_ZIPS. Blacklisted zips are stored in BLACKLIST but have no effect
+ *  until this offline task is run.
+ *   
  * */
 
 import 'dart:io';
