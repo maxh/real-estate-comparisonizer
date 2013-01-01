@@ -33,7 +33,7 @@ class Fetcher {
   var httpClientFactory;
   
   Fetcher() {
-    // TODO(maxh): If no input file is found, retrieve it from IN_FILE_URL.
+    // TODO(maxh): If no input file is found, retrieve it from CENSUS_URL.
     File o = new File(PROCESSED_ZIPS);
     Future<List<String>> finishedReading = o.readAsLines(Encoding.ASCII);
     finishedReading.then((List<String> lines) {
