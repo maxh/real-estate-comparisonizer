@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Real Estate Comparisonizer</title>
+    <link rel="stylesheet" href="real_estate_comparisonizer.css">
+  </head>
+  <body>
+    <div id="templates">
+      <div id="template_container" class="container">
+        <div class="map_canvas"></div>
+        <button class="blacklist">Ain't nothing here</button>
+        <button class="win">I think this one is more expensive</button>
+      </div>
+    </div>
+    
+    <div id="top">
+      <h1>Real Estate Comparisonizer</h1>
+      <p>Which neighborhood do you think is more expensive?</p>
+      <span id="right">0</span>
+      <span id="wrong">0</span>
+    </div>
+    
+    <div id="battlefield">
+    </div>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2YPIyDKSFBGfke5vJzS67Ok2vgZ1QRak&sensor=false"></script>
+    <script type="application/dart" src="real_estate_comparisonizer.dart"></script>
+    <script src="https://dart.googlecode.com/svn/branches/bleeding_edge/dart/client/dart.js"></script>
+  </body>
+</html>
