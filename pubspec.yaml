@@ -3,5 +3,3 @@ description:  Guess which neighboorhood is more expensive based on Street View i
 
 dependencies:
   web_ui: any
-  js:
-    hosted: js
