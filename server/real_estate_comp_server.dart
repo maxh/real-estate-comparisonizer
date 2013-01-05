@@ -25,9 +25,17 @@ class RealEstateCompServer {
   
   void startServer() {
     var server = new HttpServer();
-    var httpClientFactory = new HttpClient();
+    var port = 8080;
+    try {
+      port = int.parse(Platform.environment['PORT']);
+      print("== Using PORT env ($port).");
+    }
+    catch (e) {
+      print("== No PORT env variable detected. Using 8080.");    
+    }
+    server.listen('0.0.0.0', port);
     
-    server.listen('127.0.0.1', 8080);
+    var httpClientFactory = new HttpClient();
     
     // If this zip isn't already in the blacklist, add it.
     server.addRequestHandler(
