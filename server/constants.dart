@@ -12,7 +12,7 @@ const String CENSUS_URL =
 const String CENSUS_ZIPS = "./data/census_zips.txt";
 
 // Preprocessed zipcodes.
-const String PROCESSED_ZIPS = "./data/out_zips.txt";
+const String PROCESSED_ZIPS = "./server/data/out_zips.txt";
 
 // Blacklisted zipcodes.
-const String BLACKLIST = "./data/blacklist.txt";
+const String BLACKLIST = "./server/data/blacklist.txt";
