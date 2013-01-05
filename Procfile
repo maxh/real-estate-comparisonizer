@@ -1,1 +1,1 @@
-web: ./dart-sdk/bin/dart ./server/real_estate_comp_server.dart
+web: ./dart-sdk/bin/dart ./server/app_server.dart
