@@ -26,7 +26,7 @@ class RealEstateCompServer {
   
   void startServer() {
     var server = new HttpServer();
-    server.defaultRequestHandler = new StaticFileHandler("../public/").onRequest;
+    server.defaultRequestHandler = new StaticFileHandler("./public/").onRequest;
     var port = 8080;
     try {
       port = int.parse(Platform.environment['PORT']);
