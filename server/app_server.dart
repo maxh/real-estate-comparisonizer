@@ -3,8 +3,9 @@ import 'dart:uri';
 import 'dart:math';
 import 'dart:json';
 
-import './zip_area.dart';
-import './constants.dart';
+import 'shared/zip_area.dart';
+import 'shared/static_file_handler.dart';
+import 'shared/constants.dart';
 
 class RealEstateCompServer {
   
@@ -25,6 +26,7 @@ class RealEstateCompServer {
   
   void startServer() {
     var server = new HttpServer();
+    server.defaultRequestHandler = new StaticFileHandler("../public/").onRequest;
     var port = 8080;
     try {
       port = int.parse(Platform.environment['PORT']);

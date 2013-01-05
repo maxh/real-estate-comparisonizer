@@ -20,8 +20,8 @@ import 'dart:uri';
 import 'dart:utf';
 import 'dart:json';
 
-import './zip_area.dart';
-import './constants.dart';
+import 'shared/zip_area.dart';
+import 'shared/constants.dart';
 
 class Fetcher {  
   // To avoid limits on the Geocoding API, do this in patches.
