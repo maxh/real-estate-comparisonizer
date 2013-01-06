@@ -20,7 +20,8 @@ html, body {
   width: 44%;
   height: 100%;
   float: left;
-  margin: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
   background-color: gray;
   text-align: center;
 }
@@ -36,8 +37,9 @@ html, body {
   margin-bottom: 2%;
 }
 
-#top {
+#top, #bottom {
   text-align: center;
+  margin: 1%;
 }
 
 #right {
