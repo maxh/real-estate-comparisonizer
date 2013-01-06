@@ -53,6 +53,7 @@ class RealEstateCompServer {
           int zip = int.parse(req.queryParameters["zip"]);
           if (!cur_blacklist.contains(zip.toString()))
             f.writeAsString('${zip}\n', FileMode.APPEND);
+          resp.outputStream.close();
         });
       }
     );
