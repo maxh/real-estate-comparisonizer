@@ -9,10 +9,13 @@ const String CENSUS_URL =
   "http://www.census.gov/tiger/tms/gazetteer/zips.txt";
 
 // Local copy of the input file.
-const String CENSUS_ZIPS = "./data/census_zips.txt";
+const String CENSUS_ZIPS = "./server/data/census_zips.txt";
 
 // Preprocessed zipcodes.
 const String PROCESSED_ZIPS = "./server/data/out_zips.txt";
 
 // Blacklisted zipcodes.
 const String BLACKLIST = "./server/data/blacklist.txt";
+
+// Path for web server.
+const String FULLPATH = "/Users/max/projects/dart/real_estate_comparisonizer/public";

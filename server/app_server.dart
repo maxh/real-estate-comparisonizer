@@ -26,16 +26,18 @@ class RealEstateCompServer {
   
   void startServer() {
     var server = new HttpServer();
-    server.defaultRequestHandler = new StaticFileHandler("./public/").onRequest;
-    var port = 8080;
+    server.defaultRequestHandler = new StaticFileHandler(FULLPATH).onRequest;
+    
+    var port;
     try {
       port = int.parse(Platform.environment['PORT']);
       print("== Using PORT env ($port).");
     }
     catch (e) {
-      print("== No PORT env variable detected. Using 8080.");    
+      port = 8080;
+      print("== No PORT env variable detected. Using 8080.");
     }
-    server.listen('0.0.0.0', port);
+    server.listen('127.0.0.1', port);
     
     var httpClientFactory = new HttpClient();
     
@@ -43,6 +45,7 @@ class RealEstateCompServer {
     server.addRequestHandler(
       (HttpRequest req) => req.path.contains("/blacklist"),
       (HttpRequest req, HttpResponse resp) {
+        print("== Request for /blacklist");
         resp.headers.add("Access-Control-Allow-Origin", "*");
         File f = new File(BLACKLIST);
         var s = f.readAsString();
@@ -58,6 +61,7 @@ class RealEstateCompServer {
     server.addRequestHandler(
       (HttpRequest req) => req.path == "/random-zips",
       (HttpRequest req, HttpResponse resp) {
+        print("== Request for /random-zips");
         resp.headers.add("Access-Control-Allow-Origin", "*");
         resp.outputStream.write(randomZipAreasJson().charCodes);
         resp.outputStream.close();
@@ -68,6 +72,8 @@ class RealEstateCompServer {
     server.addRequestHandler(
         (HttpRequest reqFromClient) => reqFromClient.path.contains("/proxy"),
         (HttpRequest reqFromClient, HttpResponse respToClient) {
+          print("== Request for /proxy");
+          
           respToClient.headers.add("Access-Control-Allow-Origin", "*");
           
           // The remote hostname and params are encoded in the query to /proxy.
@@ -96,6 +102,7 @@ class RealEstateCompServer {
                   "== ERROR MESSAGE: $e";
         }
     );
+    
     print("== Server up! Awaiting requests...");
   }
   

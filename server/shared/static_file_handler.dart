@@ -15,18 +15,28 @@ class StaticFileHandler {
 
   // TODO: etags, last-modified-since support
   onRequest(HttpRequest request, HttpResponse response) {
+    print("== Request for ${request.path}");
     final String path = request.path == '/' ? '/index.html' : request.path;
     final File file = new File('${basePath}${path}');
+    print("== Looking in ${basePath}${path}");
     file.exists().then((found) {
       if (found) {
         file.fullPath().then((String fullPath) {
-          if (!fullPath.startsWith(basePath)) {
-            _send404(response);
-          } else {
+          print("== Fullpath is $fullPath");
+          if ((fullPath.contains("/public/") ||
+              fullPath.contains(".pub-cache/hosted")) && (
+              fullPath.endsWith(".dart") ||
+              fullPath.endsWith(".html") ||
+              fullPath.endsWith(".css") ||
+              fullPath.endsWith(".js"))) {
             file.openInputStream().pipe(response.outputStream);
+          } else {
+            print("== Fullpath does not meet security criteria");
+            _send404(response);
           }
         });
       } else {
+        print("== File not found at all");
         _send404(response);
       }
     }); 
