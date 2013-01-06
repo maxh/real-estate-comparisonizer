@@ -46,7 +46,6 @@ class RealEstateCompServer {
       (HttpRequest req) => req.path.contains("/blacklist"),
       (HttpRequest req, HttpResponse resp) {
         print("== Request for /blacklist");
-        resp.headers.add("Access-Control-Allow-Origin", "*");
         File f = new File(BLACKLIST);
         var s = f.readAsString();
         s.then((String cur_blacklist) {
@@ -58,13 +57,12 @@ class RealEstateCompServer {
       }
     );
     
-    // Responds with two random zip codes and meta data.
+    // Responds a random zip + meta data.
     server.addRequestHandler(
       (HttpRequest req) => req.path == "/random-zip",
       (HttpRequest req, HttpResponse resp) {
         print("== Request for /random-zip");
         int index = int.parse(req.queryParameters["index"]);
-        resp.headers.add("Access-Control-Allow-Origin", "*");
         resp.outputStream.write(randomZipAreaJson(index).charCodes);
         resp.outputStream.close();
       }
@@ -75,9 +73,6 @@ class RealEstateCompServer {
         (HttpRequest reqFromClient) => reqFromClient.path.contains("/proxy"),
         (HttpRequest reqFromClient, HttpResponse respToClient) {
           print("== Request for /proxy");
-          
-          respToClient.headers.add("Access-Control-Allow-Origin", "*");
-          
           // The remote hostname and params are encoded in the query to /proxy.
           var params = reqFromClient.queryParameters;
           print("Request to /proxy received with params: ${params}");
