@@ -113,8 +113,8 @@ class RealEstateCompServer {
     l1 = "#"; // # at the beginning of a line means the zip is blacklisted
     while (l1[0] == "#")
       l1 = rawZipLines.removeAt(r.nextInt(rawZipLines.length));
-    return "{index:$index,"
-            "value:${ZipArea.jsonFromRawZipLine(l1)}}";
+    return '{"index":$index,'
+            '"value":${ZipArea.jsonFromRawZipLine(l1)}}';
   }
 }
 
