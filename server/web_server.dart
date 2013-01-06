@@ -59,11 +59,12 @@ class RealEstateCompServer {
     
     // Responds with two random zip codes and meta data.
     server.addRequestHandler(
-      (HttpRequest req) => req.path == "/random-zips",
+      (HttpRequest req) => req.path == "/random-zip",
       (HttpRequest req, HttpResponse resp) {
-        print("== Request for /random-zips");
+        print("== Request for /random-zip");
+        int index = int.parse(req.queryParameters["index"]);
         resp.headers.add("Access-Control-Allow-Origin", "*");
-        resp.outputStream.write(randomZipAreasJson().charCodes);
+        resp.outputStream.write(randomZipAreaJson(index).charCodes);
         resp.outputStream.close();
       }
     );
@@ -106,16 +107,14 @@ class RealEstateCompServer {
     print("== Server up! Awaiting requests...");
   }
   
-  String randomZipAreasJson() {
+  String randomZipAreaJson(int index) {
     Random r = new Random();
-    String l1, l2;
-    l1 = l2 = "#"; // # at the beginning of a line means the zip is blacklisted
+    String l1;
+    l1 = "#"; // # at the beginning of a line means the zip is blacklisted
     while (l1[0] == "#")
       l1 = rawZipLines.removeAt(r.nextInt(rawZipLines.length));
-    while (l2[0] == "#")
-      l2 = rawZipLines.removeAt(r.nextInt(rawZipLines.length));
-    return "[${ZipArea.jsonFromRawZipLine(l1)},"
-            "${ZipArea.jsonFromRawZipLine(l2)}]";
+    return "{index:$index,"
+            "value:${ZipArea.jsonFromRawZipLine(l1)}}";
   }
 }
 
