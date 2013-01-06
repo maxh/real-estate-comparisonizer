@@ -29,7 +29,8 @@ class StaticFileHandler {
               fullPath.endsWith(".js"))) {
             file.openInputStream().pipe(response.outputStream);
           } else {
-            _send404(response);
+            response.statusCode = HttpStatus.FORBIDDEN;
+            response.outputStream.close();
           }
         });
       } else {
