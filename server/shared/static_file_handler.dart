@@ -23,7 +23,7 @@ class StaticFileHandler {
         file.fullPath().then((String fullPath) {
           print("== Fullpath: $fullPath");
           if ((fullPath.contains("/public/") ||
-              fullPath.contains(".pub-cache/hosted")) && (
+              fullPath.contains("pub-cache/hosted")) && (
               fullPath.endsWith(".dart") ||
               fullPath.endsWith(".html") ||
               fullPath.endsWith(".css") ||
