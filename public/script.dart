@@ -2,7 +2,6 @@ import 'dart:html';
 import 'dart:json';
 import 'package:js/js.dart' as js;
 
-const String LOCAL_URL = "http://127.0.0.1:8080";
 const String ZILLOW_URL = "http://www.zillow.com/webservice/GetDemographics.htm";
 const String ZWS_ID = "X1-ZWz1bjkopnfi8b_avwne";
 
@@ -21,7 +20,7 @@ void main() {
 
 void loadZipAreas() {
   HttpRequest requestPropertyTax(int i) {
-    String url = "$LOCAL_URL/proxy?url=$ZILLOW_URL"
+    String url = "proxy?url=$ZILLOW_URL"
         "&zws-id=$ZWS_ID&zip=${zipAreas[i]['zip']}";
     return new HttpRequest.get(url,
       (result) {
@@ -53,7 +52,7 @@ void loadZipAreas() {
     );
   }
   
-  HttpRequest getRandomZips = new HttpRequest.get("$LOCAL_URL/random-zips",
+  HttpRequest getRandomZips = new HttpRequest.get("random-zips",
     (result) { 
       print(result.responseText);
       zipAreas = JSON.parse(result.responseText);
@@ -64,7 +63,7 @@ void loadZipAreas() {
 
 void blacklist(String zipcode) {
   print("Blacklisting ${zipcode}...");
-  new HttpRequest.get("$LOCAL_URL/blacklist-zip?zip=${zipcode}",
+  new HttpRequest.get("$blacklist-zip?zip=${zipcode}",
       (result) => {} );
 }
 
