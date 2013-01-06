@@ -63,7 +63,7 @@ void loadZipAreas() {
 
 void blacklist(String zipcode) {
   print("Blacklisting ${zipcode}...");
-  new HttpRequest.get("/$blacklist-zip?zip=${zipcode}",
+  new HttpRequest.get("/blacklist-zip?zip=${zipcode}",
       (result) => {} );
 }
 
