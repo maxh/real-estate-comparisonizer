@@ -17,5 +17,4 @@ const String PROCESSED_ZIPS = "./server/data/out_zips.txt";
 // Blacklisted zipcodes.
 const String BLACKLIST = "./server/data/blacklist.txt";
 
-// Path for web server.
-const String FULLPATH = "/Users/max/projects/dart/real_estate_comparisonizer/public";
+const String HOSTNAME = "0.0.0.0";

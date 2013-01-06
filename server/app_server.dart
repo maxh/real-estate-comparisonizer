@@ -26,7 +26,7 @@ class RealEstateCompServer {
   
   void startServer() {
     var server = new HttpServer();
-    server.defaultRequestHandler = new StaticFileHandler(FULLPATH).onRequest;
+    server.defaultRequestHandler = new StaticFileHandler("./public/").onRequest;
     
     var port;
     try {
@@ -37,7 +37,7 @@ class RealEstateCompServer {
       port = 8080;
       print("== No PORT env variable detected. Using 8080.");
     }
-    server.listen('127.0.0.1', port);
+    server.listen(HOSTNAME, port);
     
     var httpClientFactory = new HttpClient();
     
