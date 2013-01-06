@@ -21,6 +21,7 @@ class StaticFileHandler {
     file.exists().then((found) {
       if (found) {
         file.fullPath().then((String fullPath) {
+          print("== Fullpath: $fullPath");
           if ((fullPath.contains("/public/") ||
               fullPath.contains(".pub-cache/hosted")) && (
               fullPath.endsWith(".dart") ||
@@ -34,7 +35,6 @@ class StaticFileHandler {
           }
         });
       } else {
-        print("== File not found at all");
         _send404(response);
       }
     }); 
