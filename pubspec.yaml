@@ -1,6 +1,0 @@
-name:  Real Estate Comparisonizer
-description:  Guess which neighboorhood is more expensive based on Street View imagery!
-
-dependencies:
-  js:
-    hosted: js
